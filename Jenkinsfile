@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Replace YOUR_DOCKERHUB_USERNAME with your Docker Hub username.
-        IMAGE = 'YOUR_DOCKERHUB_USERNAME/student-task-manager'
+        IMAGE = 'riyasharma06/student-task-manager'
     }
 
     stages {
