@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Task Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <!-- <p class="eyebrow">COLLEGE PROJECT · CI/CD DEMO</p> -->
+      <h1>Student Task Manager</h1>
+      <!-- <p class="subtitle">A tiny task list, delivered through an automated DevOps pipeline.</p> -->
+    </header>
+    <section class="stats" aria-label="Task summary">
+      <div class="stat"><span class="stat-number">{{ total }}</span><span class="stat-label">Total tasks</span></div>
+      <div class="stat"><span class="stat-number">{{ completed }}</span><span class="stat-label">Completed</span></div>
+      <div class="stat"><span class="stat-number">{{ total - completed }}</span><span class="stat-label">Remaining</span></div>
+    </section>
+    <section class="panel">
+      <h2>Add a task</h2>
+      <form action="{{ url_for('add_task') }}" method="post" class="add-form">
+        <label class="sr-only" for="title">Task name</label>
+        <input id="title" name="title" maxlength="120" placeholder="e.g. Practise Docker commands" required>
+        <button type="submit">Add task</button>
+      </form>
+    </section>
+    <section class="panel">
+      <div class="list-heading"><h2>Your tasks</h2><span class="small">{{ total }} item{% if total != 1 %}s{% endif %}</span></div>
+      {% if tasks %}
+      <ul class="tasks">
+        {% for task in tasks %}
+        <li class="task {% if task.done %}is-done{% endif %}">
+          <form action="{{ url_for('toggle_task', task_id=task.id) }}" method="post">
+            <button class="check-button" type="submit" aria-label="Toggle {{ task.title }}">{% if task.done %}✓{% else %}○{% endif %}</button>
+          </form>
+          <span class="task-title">{{ task.title }}</span>
+          <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post">
+            <button class="delete-button" type="submit" aria-label="Delete {{ task.title }}">Delete</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="empty">No tasks yet. Add one above to get started.</p>
+      {% endif %}
+    </section>
+    <footer>
+      <span><i class="dot"></i> Application health: healthy</span>
+      <!-- <span>Flask · Docker · Jenkins · Kubernetes</span> -->
+    </footer>
+  </main>
+</body>
+</html>
