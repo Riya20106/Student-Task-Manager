@@ -2,8 +2,8 @@
 
 CI/CD pipeline for an existing academic project, built with Jenkins, Docker, Docker Hub and Kubernetes (Minikube).
 
-**Group :** Riya Sharma -1262240552 
-            Sanvi Chopra -1262240712 
+**Group :** Riya Sharma -1262240552 | 
+            Sanvi Chopra -1262240712 | 
             Nazuk Kabra -1262240679
 **Course:** Cloud Computing and DevOps, TYCSE
 **Repository:** https://github.com/Riya20106/Student-Task-Manager
